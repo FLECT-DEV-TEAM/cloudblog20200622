@@ -1,10 +1,6 @@
-import * as React from 'react';
+import * as React from 'react'
 import { LocalVideoEffectors, ModelConfigMobileNetV1, ModelConfigResNet, getDeviceLists } from 'local-video-effector'
 
-
-/**
- * Main Component
- */
 class App extends React.Component {
 
   localCanvasRef = React.createRef<HTMLCanvasElement>()
@@ -14,7 +10,7 @@ class App extends React.Component {
       console.log(res)
     })
 
-    const model      = new URL(window.location.href).searchParams.get('model');
+    const model      = new URL(window.location.href).searchParams.get('model')
     const blurString = new URL(window.location.href).searchParams.get('blur')
     const blur = blurString === null ? 0 : parseInt(blurString)
     if(model === 'MobileNetV1'){
@@ -24,7 +20,6 @@ class App extends React.Component {
     }else{
       this.localVideoEffectors = new LocalVideoEffectors(null)
     }
-    this.localVideoEffectors.selectInputVideoDevice("")
     this.localVideoEffectors.cameraEnabled              = true
     this.localVideoEffectors.virtualBackgroundEnabled   = true
     this.localVideoEffectors.virtualBackgroundImagePath = "/pic1.jpg"
@@ -35,7 +30,6 @@ class App extends React.Component {
   }
 
   drawVideoCanvas = () => {
-
     if (this.localCanvasRef.current !== null) {
       const width  = 640
       const height = 480
@@ -54,11 +48,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <div style={{ width: "480px", margin: "auto" }}>
-        <canvas ref={this.localCanvasRef}  style={{ display: "block", width: "480px", margin: "auto" }} />
+      <div style={{ width: "640px", margin: "auto" }}>
+        <canvas ref={this.localCanvasRef}  style={{ display: "block", width: "640px", margin: "auto" }} />
       </div>
     )
   }
 }
 
-export default App;
+export default App
